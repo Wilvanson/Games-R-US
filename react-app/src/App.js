@@ -8,6 +8,9 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import ItemPage from './components/ItemsPage';
+import SingleItemPage from './components/Single-ItemPage';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,7 +44,10 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <ItemPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/items/:itemId' exact={true} >
+          <SingleItemPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

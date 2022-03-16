@@ -23,8 +23,8 @@ class Item(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
-            'item_id': self.item_id,
+            'type': self.type,
+            'in_stock': self.in_stock,
             'description': self.description,
             'name': self.name,
             'cost': self.cost,

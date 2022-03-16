@@ -9,7 +9,7 @@ class Purchesed(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'), nullable=False)
     item_id = db.Column(db.Integer,db.ForeignKey('items.id'), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.now())
+    # created_at = db.Column(db.DateTime, default=datetime.now())
 
     users = db.relationship("User", back_populates="purcheses" )
     items = db.relationship("Item", back_populates="purcheses" )
