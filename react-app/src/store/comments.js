@@ -41,7 +41,7 @@ const edit_Comment = list => {
   };
 
   export const addComment = (newComment) => async dispatch => {
-    const response = await fetch(`/api/items/${newComment.item_Id}/comments`,{
+    const response = await fetch(`/api/items/${newComment.item_id}/comments`,{
       method:"POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({newComment})
@@ -56,10 +56,11 @@ const edit_Comment = list => {
   };
 
   export const editComment = (comment) => async dispatch => {
-    const response = await fetch(`/api/items/${comment.item_Id}/comments/${comment.id}/edit`,{
+      const body = comment.description
+    const response = await fetch(`/api/items/${comment.item_id}/comments/${comment.id}/edit`,{
       method:"POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({comment})
+      body: JSON.stringify({body})
     });
   
     if (response.ok) {
@@ -72,7 +73,8 @@ const edit_Comment = list => {
 
   export const deleteComment = (comment) => async dispatch => {
       const id = comment.id;
-    const response = await fetch(`/api/items/${comment.item_Id}/comments/${comment.id}/delete`,{
+      const idd = comment.item_id
+    const response = await fetch(`/api/items/${comment.item_id}/comments/${comment.id}/delete`,{
       method:"POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({id})
@@ -82,7 +84,7 @@ const edit_Comment = list => {
       const ids = await response.json();
       
       dispatch(removeComment(ids.id));
-      
+      return idd
     }
   };
 
@@ -91,7 +93,6 @@ const edit_Comment = list => {
   };
 
   const commentReducer = (state = initialState, action) => {
-    let newState
     switch (action.type) {
         case LOAD_COMMENT:
             let newState = {...state}
@@ -100,8 +101,11 @@ const edit_Comment = list => {
                 newState.list.push(comment)
             })
             return newState
-        case ADD_COMMENT:
-          return
+        case REMOVE_COMMENT:
+            let newStates = {...state}
+            let li = newStates.list.filter(comment => comment.id !== action.id);
+            newStates.list = li;
+          return newStates
       default:
         return state;
     }

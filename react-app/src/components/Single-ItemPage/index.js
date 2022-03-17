@@ -5,26 +5,60 @@ import { get_item } from '../../store/item';
 import { getComments } from '../../store/comments';
 import Modal from "react-modal";
 import EditFrom from '../EditCommentPage';
+import DeleteCommentFrom from '../DeleteCommentPage';
+import CommentFrom from '../AddCommentPage';
 
 function SingleItemPage(){
+
+
     const { itemId } = useParams();
     const [isOpen, setIsOpen] = useState(false);
+    const [isDOpen, setIsDOpen] = useState(false);
+    const [isAOpen, setIsAOpen] = useState(false);
+    const [value, setvalue] = useState();
+
+
   const userId = useSelector((state) => state.session.user.id);
   const item = useSelector(state => state.itemreducer.currentItem);
   const comments = useSelector(state => state.commentReducer.list);
   const dispatch = useDispatch();
   const id = parseInt(userId)
 
+  
   const openModal = () => {
     setIsOpen(true);
   };
 
   function afterOpenModal() {
-    console.log("hvfuvhfd");
+    
   }
 
   const closeModal = () => {
     setIsOpen(false);
+  };
+
+  const openDModal = () => {
+    setIsDOpen(true);
+  };
+
+  function afterOpenDModal() {
+
+  }
+
+  const closeDModal = () => {
+    setIsDOpen(false);
+  };
+
+  const openAModal = () => {
+    setIsAOpen(true);
+  };
+
+  function afterOpenAModal() {
+    
+  }
+
+  const closeAModal = () => {
+    setIsAOpen(false);
   };
 
   const customStyles = {
@@ -55,7 +89,7 @@ function SingleItemPage(){
 
           <div className="pages">
         <h2>Comments</h2>
-        <button >ADD A COMMENT</button>
+        <button onClick={openAModal}>ADD A COMMENT</button>
 
         {comments.map((co)=>{
                 return (
@@ -64,8 +98,12 @@ function SingleItemPage(){
                       {/* <p>{co.user_Id === id}</p> */}
                       {co.user_id === id &&(
                           <div>
-                            <button onClick={openModal}>EDIT</button>
-                            <button >DELETE</button>
+                            <button onClick={(e) => {
+                                setvalue(co)
+                                return openModal(true)}}>EDIT</button>
+                            <button onClick={(e) => {
+                                  setvalue(co)
+                                  return openDModal(true)}}>DELETE</button>
                           </div>
                             
                       )}
@@ -79,7 +117,25 @@ function SingleItemPage(){
           onRequestClose={closeModal}
           style={customStyles}
         >
-          <EditFrom hide={closeModal} />
+          <EditFrom comment={value} hide={closeModal} />
+        </Modal>
+
+        <Modal
+          isOpen={isDOpen}
+          onAfterOpen={afterOpenDModal}
+          onRequestClose={closeDModal}
+          style={customStyles}
+        >
+          <DeleteCommentFrom comment={value} hide={closeDModal} />
+        </Modal>
+
+        <Modal
+          isOpen={isAOpen}
+          onAfterOpen={afterOpenAModal}
+          onRequestClose={closeAModal}
+          style={customStyles}
+        >
+          <CommentFrom hide={closeAModal} />
         </Modal>
       </div>
   );
