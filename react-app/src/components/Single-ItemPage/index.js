@@ -3,17 +3,42 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { get_item } from '../../store/item';
 import { getComments } from '../../store/comments';
+import Modal from "react-modal";
+import EditFrom from '../EditCommentPage';
 
 function SingleItemPage(){
     const { itemId } = useParams();
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
   const userId = useSelector((state) => state.session.user.id);
   const item = useSelector(state => state.itemreducer.currentItem);
   const comments = useSelector(state => state.commentReducer.list);
   const dispatch = useDispatch();
   const id = parseInt(userId)
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  function afterOpenModal() {
+    console.log("hvfuvhfd");
+  }
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const customStyles = {
+    content: {
+      backgroundColor: "var(--sp-dark)",
+      borderRadius: "10px",
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
 
   useEffect(() => {
       (async() => {
@@ -39,7 +64,7 @@ function SingleItemPage(){
                       {/* <p>{co.user_Id === id}</p> */}
                       {co.user_id === id &&(
                           <div>
-                            <button >EDIT</button>
+                            <button onClick={openModal}>EDIT</button>
                             <button >DELETE</button>
                           </div>
                             
@@ -48,6 +73,14 @@ function SingleItemPage(){
                 )
             })}
       </div>
+      <Modal
+          isOpen={isOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+        >
+          <EditFrom hide={closeModal} />
+        </Modal>
       </div>
   );
 };
