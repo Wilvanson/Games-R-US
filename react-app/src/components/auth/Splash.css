@@ -1,0 +1,73 @@
+.splash {
+    background: rgb(63, 54, 54);
+    background-size: 800% 800%;
+  
+    
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    gap: 30px;
+  }
+  
+  .splash form * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .splash input {
+    height: 40px;
+    border-radius: 16px;
+    border: none;
+  }
+  
+  .splash input::placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .formdiv {
+    margin: 20px;
+    width: 100%;
+  }
+  
+  .formdiv .half {
+    width: 50%;
+  }
+  
+  
+  
+  #signup-err{
+       color: white;
+  }
+  
+  .button-white {
+    padding: 13px 31px;
+    border: 1px solid var(--sp-dark);
+    border-radius: 500px;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    font-size: 14px !important;
+    color: var(--sp-dark);
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .button-white:hover {
+    border: 1px solid black;
+  }
+
+  .formdiv .links{
+    list-style: none;
+    font-weight: bold;
+    color: antiquewhite;
+  }
