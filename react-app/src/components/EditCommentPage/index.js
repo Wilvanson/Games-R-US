@@ -1,12 +1,17 @@
 import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../../store/comments";
+import { useHistory, useParams } from "react-router-dom";
+import { editComment } from "../../store/comments";
 
-function EditFrom({ hide}){
+function EditFrom({comment, hide}){
+
     const userId = useSelector((state) => state.session.user.id);
-    const [body, setBody]= useState('');
+    const { itemId } = useParams(); 
+    const [body, setBody]= useState(comment.description);
     const [errors, setErrors] = useState([]);
+    
     const dispatch = useDispatch();
+    const history = useHistory();
     let form = 'EDIT';
     
     // useEffect(()=>{
@@ -16,13 +21,14 @@ function EditFrom({ hide}){
     const handleSubmit = async(e) => {
         e.preventDefault();
         // setErrors([]);
-        //   const obj = {
-        //       ...comment,
-        //       body
-        //   }
-        // //   console.log(obj)
-        //   await dispatch(editComment(obj))
+          const obj = {
+              ...comment,
+              description: body
+          }
+        //   console.log(obj)
+        await dispatch(editComment(obj))
         hide();
+        // history.push(`/items/${itemId}`)
       }
 
     const handleStop=(e)=>{

@@ -101,6 +101,15 @@ const edit_Comment = list => {
                 newState.list.push(comment)
             })
             return newState
+        case ADD_COMMENT:
+            let newStat = {...state}
+            newStat.list.push(action.list)
+            return newStat
+        case EDIT_COMMENT:
+            let newStatt = {...state}
+            let lii = newStatt.list.filter(comment => comment.id !== action.list.id);
+            lii.push(action.list)
+            return newStatt
         case REMOVE_COMMENT:
             let newStates = {...state}
             let li = newStates.list.filter(comment => comment.id !== action.id);

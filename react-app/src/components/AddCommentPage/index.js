@@ -5,23 +5,23 @@ import { useHistory, useParams } from "react-router-dom";
 
 function CommentFrom({ hide}){
     const userId = useSelector((state) => state.session.user.id)
-    const { id } = useParams(); 
+    const { itemId } = useParams(); 
     const dispatch = useDispatch();
     const history = useHistory();
     const [body, setBody] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        // let userId = sessionUser.id;
-        // let storyId = id;
-        // const obj = {
-        //     userId,
-        //     storyId,
-        //     body
-        // }
+
+        const obj = {
+            user_id: userId,
+            item_id: itemId,
+            description: body
+        }
         
-        // dispatch(addComment(obj))
-        hide();
+        await dispatch(addComment(obj))
+        // hide();
+        history.push(`/items/${itemId}`)
       }
 
     const handleStop=(e)=>{
