@@ -6,9 +6,7 @@ import { all_item } from '../../store/item';
 
 const ItemPage = () => {
     const items = useSelector(state => state.itemreducer.items);
-    const dispatch = useDispatch();
-    
-    
+    const dispatch = useDispatch(); 
     useEffect(() => {
         (async() => {
             await dispatch(all_item());
@@ -20,10 +18,12 @@ const ItemPage = () => {
       <div>
           <h2>List</h2>
           {items.map((item) =>
+          <div>
           <NavLink to={`/items/${item.id}`} key={item.id} >
             <h2 className="links">{item.name}</h2>
-            <img src={`${item.image}`}/>
           </NavLink>
+            <img src={`${item.image}`}/>
+          </div>
           )}
       </div>
     );

@@ -17,3 +17,10 @@ def items():
 def item(id):
     item = Item.query.get(id)
     return item.to_dict()
+
+
+@item_routes.route('/<int:id>/comments')
+@login_required
+def comment(id):
+    comments = Comment.query.filter(Comment.item_id == id).all()
+    return {'comments': [comment.to_dict() for comment in comments]}
