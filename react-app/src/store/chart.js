@@ -41,8 +41,8 @@ const removeChart = id => {
   
     if (response.ok) {
       const item = await response.json();
-
-      dispatch(addChart(item));
+      console.log(item)
+    //   dispatch(addChart(item));
       return item;
     }
   };

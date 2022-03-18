@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import EditFrom from '../EditCommentPage';
 import DeleteCommentFrom from '../DeleteCommentPage';
 import CommentFrom from '../AddCommentPage';
+import addToChart from '../../store/chart';
 
 function SingleItemPage(){
 
@@ -16,6 +17,7 @@ function SingleItemPage(){
     const [isDOpen, setIsDOpen] = useState(false);
     const [isAOpen, setIsAOpen] = useState(false);
     const [value, setvalue] = useState();
+    const [added, setadded] = useState(false);
 
 
   const userId = useSelector((state) => state.session.user.id);
@@ -81,12 +83,34 @@ function SingleItemPage(){
         })();
     }, [dispatch]);
     
+    const addchart = async(e) =>{
+      e.preventDefault();
+
+      let obj = {
+        user_id: userId,
+        item_id: id
+      }
+
+      await dispatch(addToChart(obj))
+      setadded(true)
+    }
+
+    const removechart = async() =>{
+      let obj = {
+        user_id: userId,
+        item_id: id
+      }
+
+      // await dispatch(addToChart(obj))
+      setadded(false)
+    }
 
   return (
       <div>
           <h2>{item.name}</h2>
           <img src={`${item.image}`}/>
-
+          {!added && <button onClick={addchart}>ADD TO CHART</button>}
+          {added && <button onClick={removechart}>REMOVE FROM CHART</button>}
           <div className="pages">
         <h2>Comments</h2>
         <button onClick={openAModal}>ADD A COMMENT</button>
