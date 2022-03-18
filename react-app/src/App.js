@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import ItemPage from './components/ItemsPage';
 import SingleItemPage from './components/Single-ItemPage';
+import ChartPage from './components/Chart';
 
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/items/:itemId' exact={true} >
           <SingleItemPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/chart' exact={true} >
+          <ChartPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
