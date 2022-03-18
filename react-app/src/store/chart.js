@@ -42,26 +42,25 @@ const removeChart = id => {
     if (response.ok) {
       const item = await response.json();
       console.log(item)
-    //   dispatch(addChart(item));
+      dispatch(addChart(item));
       return item;
     }
   };
 
 
-  export const deleteFromChart = (comment) => async dispatch => {
-      const id = comment.id;
-      const idd = comment.item_id
-    const response = await fetch(`/api/users/${comment.user_id}/chart/delete`,{
+  export const deleteFromChart = (item, id) => async dispatch => {
+      const ids = item.id;
+    const response = await fetch(`/api/users/${id}/chart/delete`,{
       method:"POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({id})
+      body: JSON.stringify({ids})
     });
   
     if (response.ok) {
-      const ids = await response.json();
+      const idd = await response.json();
       
-      dispatch(removeChart(ids.id));
-      return idd
+      dispatch(removeChart(idd.id));
+      return ids
     }
   };
 
@@ -72,17 +71,19 @@ const removeChart = id => {
   export default function chartReducer(state = initialState, action) {
     let newState
     switch (action.type) {
-        case LOAD_CHART:
+        case LOAD_CHART:{
             newState = {...state}
             newState.items = []
             action.items.items.map((item) => {
                 newState.items.push(item)
             })
             return newState
-        case ADD_CHART:
+        }
+        case ADD_CHART:{
             newState = {...state}
             newState.items.push(action.item)
             return newState
+        }
         case REMOVE_CHART:
             newState = {...state}
             let li = newState.items.filter(item => item.id !== action.id)

@@ -35,9 +35,10 @@ def chart(id):
 def addchart(id):
     bodys = request.json
     body = bodys['newitem']
-    # print('\n \n ', body,'\n \n')
     item = body['item_id']
     items = Chart(user_id= id, item_id= item)
+
+    
     db.session.add(items)
     db.session.commit()
     return items.to_dict()
@@ -47,7 +48,8 @@ def addchart(id):
 @login_required
 def deletechart(id):
     bodys = request.json
-    ids = bodys['id']
+    ids = bodys['ids']
+    # print('\n \n ', bodys,'\n \n')
     chart = Chart.query.get(ids)
     db.session.delete(chart)
     db.session.commit()
