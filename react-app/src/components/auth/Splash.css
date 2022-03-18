@@ -37,6 +37,7 @@
   .formdiv {
     margin: 20px;
     width: 100%;
+    text-decoration: none;
   }
   
   .formdiv .half {
