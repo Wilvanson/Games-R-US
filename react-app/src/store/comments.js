@@ -92,32 +92,32 @@ const edit_Comment = list => {
     list: []
   };
 
-  const commentReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LOAD_COMMENT:
-            let newState = {...state}
-            newState.list = []
-            action.list.comments.map((comment) => {
-                newState.list.push(comment)
-            })
-            return newState
-        case ADD_COMMENT:
-            let newStat = {...state}
-            newStat.list.push(action.list)
-            return newStat
-        case EDIT_COMMENT:
-            let newStatt = {...state}
-            let lii = newStatt.list.filter(comment => comment.id !== action.list.id);
-            lii.push(action.list)
-            return newStatt
-        case REMOVE_COMMENT:
-            let newStates = {...state}
-            let li = newStates.list.filter(comment => comment.id !== action.id);
-            newStates.list = li;
-          return newStates
-      default:
-        return state;
-    }
-  };
   
-  export default commentReducer;
+  export default function commentReducer(state = initialState, action) {
+    let newState
+    switch (action.type) {
+      case LOAD_COMMENT:
+          newState = {...state}
+          newState.list = []
+          action.list.comments.map((comment) => {
+              newState.list.unshift(comment)
+          })
+          return newState
+        case ADD_COMMENT:
+          newState = {...state}
+          newState.list.unshift(action.list)
+          return newState
+        case EDIT_COMMENT:
+          newState = {...state}
+          let lii = newState.list.filter(comment => comment.id !== action.list.id);
+          lii.unshift(action.list)
+          return newState
+        case REMOVE_COMMENT:
+          newState = {...state}
+          let li = newState.list.filter(comment => comment.id !== action.id);
+          newState.list = li;
+          return newState
+    default:
+      return state;
+  }
+}

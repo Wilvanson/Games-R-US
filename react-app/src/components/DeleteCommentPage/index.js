@@ -2,11 +2,10 @@ import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteComment } from "../../store/comments";
 import { useHistory, useParams } from "react-router-dom";
-// import "./delete.css"
+
 
 function DeleteCommentFrom({comment, hide}){
-    const userId = useSelector((state) => state.session.user.id);
-    // const { id } = useParams(); 
+    const userId = useSelector((state) => state.session.user.id); 
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -14,8 +13,6 @@ function DeleteCommentFrom({comment, hide}){
         e.preventDefault();
         let id = await dispatch(deleteComment(comment))
         hide()
-        history.push(`/items/${id}`)
-        // history.push('/')
       }
 
     const handleStop=(e)=>{

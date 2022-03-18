@@ -20,7 +20,6 @@ export const all_item = () => async (dispatch) => {
 });
 if (response.ok) {
     const data = await response.json();
-    // console.log(data)
     dispatch(allItem(data));
 }
 }
@@ -31,7 +30,6 @@ export const get_item = (id) => async (dispatch) => {
 });
 if (response.ok) {
     const data = await response.json();
-    // console.log(data)
     dispatch(getItem(data));
 }
 }

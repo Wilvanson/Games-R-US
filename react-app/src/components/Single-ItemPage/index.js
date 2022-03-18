@@ -7,7 +7,7 @@ import Modal from "react-modal";
 import EditFrom from '../EditCommentPage';
 import DeleteCommentFrom from '../DeleteCommentPage';
 import CommentFrom from '../AddCommentPage';
-import {addToChart, deleteFromChart} from '../../store/chart';
+import {addToChart} from '../../store/chart';
 
 function SingleItemPage(){
 
@@ -95,18 +95,13 @@ function SingleItemPage(){
       setadded(true)
     }
 
-    const removecharts = async() =>{
-
-      await dispatch(deleteFromChart(item, userId))
-      setadded(false)
-    }
+    
 
   return (
       <div>
           <h2>{item.name}</h2>
           <img src={`${item.image}`}/>
           {!added && <button onClick={addchart}>ADD TO CHART</button>}
-          {added && <button onClick={removecharts}>REMOVE FROM CHART</button>}
           <div className="pages">
         <h2>Comments</h2>
         <button onClick={openAModal}>ADD A COMMENT</button>
@@ -115,7 +110,6 @@ function SingleItemPage(){
                 return (
                     <div key={co.id}>
                       <p>{co.description}</p>
-                      {/* <p>{co.user_Id === id}</p> */}
                       {co.user_id === id &&(
                           <div>
                             <button onClick={(e) => {

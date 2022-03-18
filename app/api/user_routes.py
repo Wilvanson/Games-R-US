@@ -47,10 +47,10 @@ def addchart(id):
 @user_routes.route('/<int:id>/chart/delete', methods=['POST'])
 @login_required
 def deletechart(id):
-    bodys = request.json
-    ids = bodys['ids']
-    # print('\n \n ', bodys,'\n \n')
-    chart = Chart.query.get(ids)
+    body = request.json
+    ids = body['item']
+    chart = Chart.query.filter(Chart.user_id == id, Chart.item_id == ids['id']).first()
+    # print('\n \n ', chart,'\n \n')
     db.session.delete(chart)
     db.session.commit()
-    return {'id': ids}
+    return {'id': ids['id']}

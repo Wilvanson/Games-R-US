@@ -14,21 +14,15 @@ function EditFrom({comment, hide}){
     const history = useHistory();
     let form = 'EDIT';
     
-    // useEffect(()=>{
-    //   dispatch(getStories())
-    // }, [dispatch])
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        // setErrors([]);
           const obj = {
               ...comment,
               description: body
           }
-        //   console.log(obj)
         await dispatch(editComment(obj))
         hide();
-        // history.push(`/items/${itemId}`)
       }
 
     const handleStop=(e)=>{

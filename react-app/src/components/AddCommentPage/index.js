@@ -20,8 +20,7 @@ function CommentFrom({ hide}){
         }
         
         await dispatch(addComment(obj))
-        // hide();
-        history.push(`/items/${itemId}`)
+        hide();
       }
 
     const handleStop=(e)=>{
