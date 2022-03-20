@@ -25,18 +25,27 @@ const ChartPage = () => {
       }
 
     return (
-      <div>
-          <h2>List</h2>
+      <div className='your-chart'>
+        <h1>YOUR CHART</h1>
           {items.map((item) =>
-          <div>
-          <NavLink to={`/items/${item.id}`} key={item.id} >
-            <h2 className="links">{item.name}</h2>
-          </NavLink>
-            <img src={`${item.image}`}/>
-            <button onClick={(e) => {
-                // setvalue(item)
-                return removecharts(item)
-            }}>REMOVE FROM CHART</button>
+          <div className='chart'>
+            <div>
+              <img src={`${item.image}`}/>
+            </div>
+            <div className='chart-detail'>
+              <div>
+                <NavLink to={`/items/${item.id}`} key={item.id} >
+                  <h1 className="links">{item.name}</h1>
+                </NavLink>
+              </div>
+              <div className='chart-button'>
+                <input type='number' name='ranges' min={1} max={item.in_stock} />
+                <button onClick={(e) => {
+                    // setvalue(item)
+                    return removecharts(item)
+                }}>REMOVE FROM CHART</button>
+              </div>
+            </div>
           </div>
           )}
       </div>

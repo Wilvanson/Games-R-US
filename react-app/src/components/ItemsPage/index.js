@@ -15,14 +15,13 @@ const ItemPage = () => {
     
 
     return (
-      <div>
-          <h2>List</h2>
+      <div  className='pages'>
           {items.map((item) =>
-          <div>
-          <NavLink to={`/items/${item.id}`} key={item.id} >
-            <h2 className="links">{item.name}</h2>
-          </NavLink>
+          <div className='items'>
             <img src={`${item.image}`}/>
+          <NavLink to={`/items/${item.id}`} key={item.id} >
+            <h2>{item.name}</h2>
+          </NavLink>
           </div>
           )}
       </div>

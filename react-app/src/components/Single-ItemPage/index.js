@@ -98,18 +98,26 @@ function SingleItemPage(){
     
 
   return (
-      <div>
-          <h2>{item.name}</h2>
+      <div >
+        <div className='singlepage'>
+        <div>
           <img src={`${item.image}`}/>
+        </div>
+        <div>
+          <h2>{item.name}</h2>
+          <p>{item.description}</p>
+          <p>${item.cost}</p>
           {!added && <button onClick={addchart}>ADD TO CHART</button>}
-          <div className="pages">
+        </div>
+        </div>
+          <div className="page"> 
         <h2>Comments</h2>
         <button onClick={openAModal}>ADD A COMMENT</button>
 
         {comments.map((co)=>{
                 return (
-                    <div key={co.id}>
-                      <p>{co.description}</p>
+                    <div key={co.id} className='comments'>
+                      <p >{co.description}</p>
                       {co.user_id === id &&(
                           <div>
                             <button onClick={(e) => {

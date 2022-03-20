@@ -16,3 +16,105 @@
     list-style: none;
     align-items: center;
 }
+
+.pages{
+    display: grid;
+    grid-gap:10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 50px;
+}
+
+img{
+    height: 350px;
+    width: 250px;
+    border-radius: 3rem;
+    border: 0;
+}
+
+body{
+    background: rgb(63, 54, 54);
+}
+
+.singlepage{
+    display: flex;
+    padding-top: 20px;
+    width: 60%;
+}
+
+.singlepage div{
+    padding-left: 20px;
+}
+
+.singlepage div button{
+    padding: 13px 31px;
+    border: 1px solid var(--sp-dark);
+    border-radius: 500px;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    font-size: 14px !important;
+    color: var(--sp-dark);
+    width: 50%;
+    cursor: pointer;
+}
+
+.page{
+    padding-left: 20px;
+    background-color: black;
+    color: white;
+    border-radius: 3rem;
+    border: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 50px;
+}
+
+.page button{
+    padding: 13px 31px;
+    border: 1px solid var(--sp-dark);
+    border-radius: 500px;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    font-size: 14px !important;
+    color: black;
+    margin-left:  10px;
+    cursor: pointer;
+}
+
+.comments{
+    /* border-bottom: 1px solid white; */
+    margin-top: 30px;
+}
+
+.chart{
+    display: flex;
+    margin-top: 30px;
+}
+
+.chart-detail{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+
+}
+
+.chart-button button{
+    padding: 13px 31px;
+    border: 1px solid var(--sp-dark);
+    border-radius: 500px;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px;
+    font-size: 14px !important;
+    color: black;
+    margin-left:  10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* .your-chart h1{
+    display: flex;
+    align-items: center;
+} */
