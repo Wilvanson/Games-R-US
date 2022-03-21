@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, NavLink} from 'react-router-dom';
-import { getChart,  deleteFromChart} from '../../store/chart';
+import { getChart,  deleteFromChart, buyChart} from '../../store/chart';
 
 
 const ChartPage = () => {
@@ -9,9 +9,12 @@ const ChartPage = () => {
     const items = useSelector((state) => state.chartReducer.items)
     const dispatch = useDispatch(); 
     const id = parseInt(userId)
-    const [value, setvalue] = useState()
+    const [value, setvalue] = useState(0)
+    let inputs = {}
 
-
+    items.map((ite) =>{
+      inputs[ite.name] = 1
+    })
     useEffect(() => {
         (async() => {
             await dispatch(getChart(userId));
@@ -24,12 +27,28 @@ const ChartPage = () => {
         await dispatch(deleteFromChart(item, id))
       }
 
+      const handleChange = async(e) => {
+        inputs[e.target.name] = parseInt(e.target.value)
+      }
+      
+      const buying = async()=> {
+        console.log(inputs)
+        await dispatch(buyChart(id, inputs))
+        // history
+      }
+      let total = 0
+      // setvalue(total)
     return (
       <div className='your-chart'>
-        <h1>YOUR CHART</h1>
+        <div>
+          <h1>YOUR CHART</h1>
+          <button onClick={buying}>Checkout</button>
+          <p>TOTAL: {value}</p>
+        </div>
           {items.map((item) =>
           <div className='chart'>
             <div>
+              {total += item.cost}
               <img src={`${item.image}`}/>
             </div>
             <div className='chart-detail'>
@@ -39,7 +58,7 @@ const ChartPage = () => {
                 </NavLink>
               </div>
               <div className='chart-button'>
-                <input type='number' name='ranges' min={1} max={item.in_stock} />
+                <input type='number' name={item.name} onChange={handleChange} min={1} max={item.in_stock} />
                 <button onClick={(e) => {
                     // setvalue(item)
                     return removecharts(item)

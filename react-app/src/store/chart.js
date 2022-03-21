@@ -1,11 +1,17 @@
 const LOAD_CHART = 'chart/loadChart';
 const ADD_CHART = 'chart/addChart';
 const REMOVE_CHART = 'chart/removeChart';
-
+const NO_CHART = 'chart/noChart'
 const addChart = item => {
     return {
       type: ADD_CHART,
       item
+    };
+  };
+
+  const emptyChart = () => {
+    return {
+      type: NO_CHART
     };
   };
 
@@ -63,6 +69,20 @@ const removeChart = id => {
     }
   };
 
+  export const buyChart = (id, inputs) => async dispatch => {
+    const response = await fetch(`/api/users/${id}/chart/buy`,{
+      method:"POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({inputs})
+    });
+  
+    if (response.ok) {
+      const item = await response.json();
+      dispatch(emptyChart());
+      return item;
+    }
+  };
+
   const initialState = {
     items: []
   };
@@ -86,6 +106,10 @@ const removeChart = id => {
             let li = newState.items.filter(item => item.id !== action.id)
             newState.items = li
             return newState
+        case NO_CHART:
+          newState = {...state}
+          newState.items = []
+          return newState
     default:
       return state;
   }

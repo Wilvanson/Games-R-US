@@ -7,7 +7,7 @@ import Modal from "react-modal";
 import EditFrom from '../EditCommentPage';
 import DeleteCommentFrom from '../DeleteCommentPage';
 import CommentFrom from '../AddCommentPage';
-import {addToChart} from '../../store/chart';
+import {addToChart, getChart} from '../../store/chart';
 
 function SingleItemPage(){
 
@@ -23,10 +23,13 @@ function SingleItemPage(){
   const userId = useSelector((state) => state.session.user.id);
   const item = useSelector(state => state.itemreducer.currentItem);
   const comments = useSelector(state => state.commentReducer.list);
+  const items = useSelector((state) => state.chartReducer.items)
   const dispatch = useDispatch();
   const id = parseInt(userId)
 
-  
+   
+   
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -80,6 +83,13 @@ function SingleItemPage(){
       (async() => {
           await dispatch(get_item(itemId));
           await dispatch(getComments(itemId));
+          await dispatch(getChart(userId))
+
+          items.map((ite) =>{
+            if(ite.id === item.id){
+              setadded(true)
+            }
+          })
         })();
     }, [dispatch]);
     
@@ -90,11 +100,11 @@ function SingleItemPage(){
         user_id: id,
         item_id: parseInt(itemId)
       }
-
-      await dispatch(addToChart(obj))
       setadded(true)
+      await dispatch(addToChart(obj))
     }
 
+    console.log(added)
     
 
   return (
@@ -107,7 +117,9 @@ function SingleItemPage(){
           <h2>{item.name}</h2>
           <p>{item.description}</p>
           <p>${item.cost}</p>
-          {!added && <button onClick={addchart}>ADD TO CHART</button>}
+          {item.in_stock < 4 && <p className='short'>There is {item.in_stock} left in stock</p>}
+          {!added && <button disabled={item.in_stock !== 0 ? false : true} onClick={addchart}>ADD TO CHART</button>}
+          {added && <p>Available in your chart</p>}
         </div>
         </div>
           <div className="page"> 

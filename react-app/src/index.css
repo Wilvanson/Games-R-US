@@ -20,7 +20,7 @@
 .pages{
     display: grid;
     grid-gap:10px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-top: 50px;
 }
 
@@ -114,7 +114,6 @@ body{
     cursor: pointer;
 }
 
-/* .your-chart h1{
-    display: flex;
-    align-items: center;
-} */
+.short{
+    color: red;
+}

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Chart, Item, db
+from app.models import User, Chart, Item,Purchesed, db
 
 user_routes = Blueprint('users', __name__)
 
@@ -50,7 +50,25 @@ def deletechart(id):
     body = request.json
     ids = body['item']
     chart = Chart.query.filter(Chart.user_id == id, Chart.item_id == ids['id']).first()
-    # print('\n \n ', chart,'\n \n')
     db.session.delete(chart)
     db.session.commit()
     return {'id': ids['id']}
+
+
+@user_routes.route('/<int:id>/chart/buy', methods=['POST'])
+@login_required
+def buychart(id):
+    body = request.json
+    stock = body['inputs']
+    charts = Chart.query.filter(Chart.user_id == id).all()
+    for items in charts:
+        itee = Item.query.get(items.item_id)
+        itee.in_stock -= stock[itee.name]
+
+        ite = Purchesed(user_id = items.user_id, item_id = items.item_id)
+
+        db.session.delete(items)
+        db.session.add(ite)
+        
+    db.session.commit()
+    return {"hey": "hey"}
