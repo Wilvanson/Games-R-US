@@ -20,19 +20,16 @@ const HistoryPage = () => {
       }, [dispatch]);
     
 
-      
       let total = 0
       // setvalue(total)
-    return (
-      <div className='your-chart'>
+      return (
+        <div className='your-chart'>
         <div>
-          <h1>YOUR CHART</h1>
-          <p>TOTAL: {value}</p>
+          <h1>YOUR ORDER HISTORY</h1>
         </div>
           {items.map((item) =>
           <div className='chart'>
             <div>
-              {total += item.cost}
               <img src={`${item.image}`}/>
             </div>
             <div className='chart-detail'>
@@ -40,6 +37,7 @@ const HistoryPage = () => {
                 <NavLink to={`/items/${item.id}`} key={item.id} >
                   <h1 className="links">{item.name}</h1>
                 </NavLink>
+                
               </div>
             </div>
           </div>

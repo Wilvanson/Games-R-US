@@ -65,7 +65,7 @@ def buychart(id):
         itee = Item.query.get(items.item_id)
         itee.in_stock -= stock[itee.name]
 
-        ite = Purchesed(user_id = items.user_id, item_id = items.item_id)
+        ite = Purchesed(user_id = items.user_id, item_id = items.item_id, amount=stock[itee.name])
 
         db.session.delete(items)
         db.session.add(ite)
@@ -80,5 +80,7 @@ def history(id):
     items = []
     for item in history:
         ite = Item.query.get(item.item_id)
+        # ite['amount'] = item.amount
+        # print('\n \n',ite,'\n \n')
         items.append(ite.to_dict())
     return {'items': items}

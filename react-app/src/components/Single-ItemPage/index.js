@@ -17,8 +17,9 @@ function SingleItemPage(){
     const [isDOpen, setIsDOpen] = useState(false);
     const [isAOpen, setIsAOpen] = useState(false);
     const [value, setvalue] = useState();
-    const [added, setadded] = useState(false);
+    const [error, setError]= useState([])
 
+    
 
   const userId = useSelector((state) => state.session.user.id);
   const item = useSelector(state => state.itemreducer.currentItem);
@@ -68,7 +69,7 @@ function SingleItemPage(){
 
   const customStyles = {
     content: {
-      backgroundColor: "var(--sp-dark)",
+      backgroundcolor: 'rgba(255, 255, 128, .5)',
       borderRadius: "10px",
       top: "50%",
       left: "50%",
@@ -84,27 +85,36 @@ function SingleItemPage(){
           await dispatch(get_item(itemId));
           await dispatch(getComments(itemId));
           await dispatch(getChart(userId))
-
-          items.map((ite) =>{
-            if(ite.id === item.id){
-              setadded(true)
-            }
-          })
         })();
     }, [dispatch]);
+
+    useEffect(()=>{
+      // don't know why this works 
+      setError([])
+      items.map((ite) =>{
+        if(ite.id === item.id){
+          let er = []
+          er.push('Item is already in your chart')
+          setError(er)
+        }
+      })
+    }, [dispatch, items, item])
+
+    
     
     const addchart = async(e) =>{
       e.preventDefault();
-
-      let obj = {
-        user_id: id,
-        item_id: parseInt(itemId)
+      let err = []
+      err.push('Item is already in your chart')
+      setError(err)
+      if(error.length === 0){
+        let obj = {
+          user_id: id,
+          item_id: parseInt(itemId)
+        }
+        await dispatch(addToChart(obj))
       }
-      setadded(true)
-      await dispatch(addToChart(obj))
     }
-
-    console.log(added)
     
 
   return (
@@ -114,12 +124,15 @@ function SingleItemPage(){
           <img src={`${item.image}`}/>
         </div>
         <div>
+        {/* <ul>
+            {error.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul> */}
           <h2>{item.name}</h2>
           <p>{item.description}</p>
           <p>${item.cost}</p>
           {item.in_stock < 4 && <p className='short'>There is {item.in_stock} left in stock</p>}
-          {!added && <button disabled={item.in_stock !== 0 ? false : true} onClick={addchart}>ADD TO CHART</button>}
-          {added && <p>Available in your chart</p>}
+          {error.length === 0 && <button disabled={item.in_stock !== 0 ? false : true} onClick={addchart}>ADD TO CHART</button>}
+          {error.length !== 0 && <p>Available in your chart</p>}
         </div>
         </div>
           <div className="page"> 

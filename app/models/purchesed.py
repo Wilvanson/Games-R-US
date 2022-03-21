@@ -1,3 +1,4 @@
+from email.policy import default
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -9,7 +10,7 @@ class Purchesed(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'), nullable=False)
     item_id = db.Column(db.Integer,db.ForeignKey('items.id'), nullable=False)
-    # created_at = db.Column(db.DateTime, default=datetime.now())
+    amount = db.Column(db.Integer, default=1)
 
     users = db.relationship("User", back_populates="purcheses" )
     items = db.relationship("Item", back_populates="purcheses" )
