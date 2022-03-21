@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import ItemPage from './components/ItemsPage';
 import SingleItemPage from './components/Single-ItemPage';
 import ChartPage from './components/Chart';
+import HistoryPage from './components/History';
 
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/chart' exact={true} >
           <ChartPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/history' exact={true} >
+          <HistoryPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -4,12 +4,14 @@ import session from './session'
 import itemreducer from './item';
 import commentReducer from './comments';
 import chartReducer from './chart';
+import historyReducer from './histroy';
 
 const rootReducer = combineReducers({
   session,
   itemreducer,
   commentReducer,
-  chartReducer
+  chartReducer,
+  historyReducer
 });
 
 

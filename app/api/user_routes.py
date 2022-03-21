@@ -69,6 +69,16 @@ def buychart(id):
 
         db.session.delete(items)
         db.session.add(ite)
-        
+
     db.session.commit()
     return {"hey": "hey"}
+
+@user_routes.route('/<int:id>/history')
+@login_required
+def history(id):
+    history = Purchesed.query.filter(Purchesed.user_id == id).all()
+    items = []
+    for item in history:
+        ite = Item.query.get(item.item_id)
+        items.append(ite.to_dict())
+    return {'items': items}
