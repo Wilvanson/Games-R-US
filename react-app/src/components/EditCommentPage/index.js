@@ -8,7 +8,7 @@ function EditFrom({comment, hide}){
     const userId = useSelector((state) => state.session.user.id);
     const { itemId } = useParams(); 
     const [body, setBody]= useState(comment.description);
-    const [errors, setErrors] = useState([]);
+    const [errors, setError] = useState([]);
     
     const dispatch = useDispatch();
     const history = useHistory();
@@ -28,7 +28,15 @@ function EditFrom({comment, hide}){
     const handleStop=(e)=>{
         hide();
     }
-    
+    const handlebody = (e)=>{
+      setError([])
+      if(body.length > 300){
+        let er = []
+        er.push("this text is mush be less than 300 characters")
+        setError(er)
+      }
+      setBody(e.target.value)
+    }
     return (
         <div>
         <h1>{form}</h1>
@@ -41,11 +49,11 @@ function EditFrom({comment, hide}){
               id='body'
               type="text"
               value={body}
-              onChange={(e) => setBody(e.target.value)}
+              onChange={handlebody}
               required
             />
           
-          <button type="submit" className="b">Done</button>
+          <button type="submit" className="b" disabled={errors.length === 0 ? false : true}>Done</button>
           <button onClick={handleStop} className="b">Cancel</button>
         </form>
     </div>

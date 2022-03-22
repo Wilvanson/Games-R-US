@@ -44,13 +44,20 @@ const ChartPage = () => {
         await dispatch(buyChart(id, inputs))
         // history
       }
+
+      const press = async(e)=> {
+        e.preventDefault()
+        return false
+        // history
+      }
       let total = 0
       // setvalue(total)
     return (
       <div className='your-chart'>
-        <div>
-          <h1>YOUR CHART</h1>
-          {len !== 0 && <button onClick={buying}>Checkout</button>}
+        <div className='first-chart'>
+          {len === 0 && <h1>YOUR CHART IS EMPTY</h1>}
+          {len !== 0 && <h1>YOUR CHART</h1>}
+          {len !== 0 && <button  onClick={buying}>Checkout</button>}
           {/* <p>TOTAL: {}</p> */}
         </div>
           {items.map((item) =>
@@ -69,14 +76,11 @@ const ChartPage = () => {
                 <input 
                 type='number'
                 name={item.name} 
-                onChange={handleChange} 
+                onChange={handleChange}
+                onKeyPress={press} 
+                placeholder={1}
                 min={1} 
                 max={item.in_stock} />
-                {/* <span>
-                  <button name={item.name} onClick={minis}>-</button>
-                  {inputs[item.name]}
-                  <button name={item.name} onClick={plus}>+</button>
-                </span> */}
                 <button onClick={(e) => {
                     // setvalue(item)
                     return removecharts(item)

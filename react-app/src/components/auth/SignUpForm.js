@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { signUp } from "../../store/session";
+import { signUp } from "../../store/session"
 import "./Splash.css";
 import { Link } from "react-router-dom";
 
@@ -11,27 +11,30 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [name, setName] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     const err = [];
+    if(username.length === 0){
+      err.push("Must enter a username")
+    }
+    if(email.length === 0){
+      err.push("Must enter a email")
+    }
     if (password !== repeatPassword) {
       err.push("Passwords Must Match");
-      setErrors(err);
     }
-    if (password === repeatPassword) {
-      let splitName = name.split(" ");
+    setErrors(err);
+    if (err.length === 0) {
+      // console.log(errors, err)
       const data = await dispatch(
-        signUp({
+        signUp(
           username,
           email,
-          password,
-          firstName: splitName[0],
-          lastName: splitName[1],
-        })
+          password
+        )
       );
       if (data) {
         setErrors(data);
@@ -41,10 +44,6 @@ const SignUpForm = () => {
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
-  };
-
-  const updateName = (e) => {
-    setName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -97,19 +96,11 @@ const SignUpForm = () => {
           </div>
           <div className="formdiv">
             <input
-              type="text"
-              name="firstName"
-              onChange={updateName}
-              value={name}
-              placeholder={"Name(optional)"}
-            ></input>
-          </div>
-          <div className="formdiv">
-            <input
               type="password"
               name="password"
               onChange={updatePassword}
               value={password}
+              required={true}
               placeholder={"Password"}
             ></input>
           </div>

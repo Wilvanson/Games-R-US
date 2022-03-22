@@ -56,6 +56,7 @@ const LoginForm = () => {
               type="text"
               placeholder="Email"
               value={email}
+              required={true}
               onChange={updateEmail}
             />
           </div>
@@ -65,6 +66,7 @@ const LoginForm = () => {
               type="password"
               placeholder="Password"
               value={password}
+              required={true}
               onChange={updatePassword}
             />
             <div className="formdiv">

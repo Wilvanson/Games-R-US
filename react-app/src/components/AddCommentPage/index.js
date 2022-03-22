@@ -9,6 +9,7 @@ function CommentFrom({ hide}){
     const dispatch = useDispatch();
     const history = useHistory();
     const [body, setBody] = useState('');
+    const [errors, setError] = useState([]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -26,21 +27,34 @@ function CommentFrom({ hide}){
     const handleStop=(e)=>{
         hide();
     }
+
+    const handlebody = (e)=>{
+      setError([])
+      if(body.length > 300){
+        let er = []
+        er.push("this text is mush be less than 300 characters")
+        setError(er)
+      }
+      setBody(e.target.value)
+    }
     
     return (
         <div>
       <h1>COMMENT</h1>
+      <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
       <form onSubmit={handleSubmit}>
       <label>
           YOUR COMMENT:
           <input
             type="text"
             value={body}
-            onChange={(e) => setBody(e.target.value)}
+            onChange={handlebody}
             required
           />
         </label>
-        <button type="submit" className="b">DONE</button>
+        <button type="submit" className="b" disabled={errors.length === 0 ? false : true}>DONE</button>
         <button onClick={handleStop} className="b">CANCEL</button>
       </form>
     </div>

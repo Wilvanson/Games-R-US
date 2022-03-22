@@ -111,6 +111,7 @@ const edit_Comment = list => {
           newState = {...state}
           let lii = newState.list.filter(comment => comment.id !== action.list.id);
           lii.unshift(action.list)
+          newState.list = lii
           return newState
         case REMOVE_COMMENT:
           newState = {...state}
