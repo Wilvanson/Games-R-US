@@ -9,7 +9,7 @@ item_routes = Blueprint('items', __name__)
 @item_routes.route('/')
 @login_required
 def items():
-    items = Item.query.all()
+    items = Item.query.order_by(Item.id).all()
     return {'items':[item.to_dict() for item in items]}
 
 
@@ -23,7 +23,7 @@ def item(id):
 @item_routes.route('/<int:id>/comments')
 @login_required
 def comment(id):
-    comments = Comment.query.filter(Comment.item_id == id).order_by(Comment.created_at.desc()).all()
+    comments = Comment.query.filter(Comment.item_id == id).order_by(Comment.id.desc()).all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
 

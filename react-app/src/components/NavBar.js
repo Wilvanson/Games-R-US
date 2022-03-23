@@ -24,6 +24,11 @@ const NavBar = () => {
             Chart
           </NavLink>
         </li>
+        <li>
+        <a className='links' href="https://github.com/Wilvanson" target="_blank">
+          GitHub
+        </a>
+      </li>
         {user && <li>
           <LogoutButton />
         </li>}

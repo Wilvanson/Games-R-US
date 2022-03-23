@@ -100,7 +100,7 @@ const edit_Comment = list => {
           newState = {...state}
           newState.list = []
           action.list.comments.map((comment) => {
-              newState.list.unshift(comment)
+              newState.list.push(comment)
           })
           return newState
         case ADD_COMMENT:

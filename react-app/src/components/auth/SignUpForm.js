@@ -121,7 +121,7 @@ const SignUpForm = () => {
           </div>
         </form>
         <div className="formdiv">
-          <Link to="/login" >
+          <Link className='links' to="/login" >
             <h4 className="links"> Login here</h4>
           </Link>
         </div>

@@ -76,7 +76,7 @@ const LoginForm = () => {
               <button className="button-white" type="submit" onClick={demo}>
                 Demo
               </button>
-              <Link to="/sign-up">
+              <Link className='links' to="/sign-up">
                 <h4 className="links">Sign up here</h4>
               </Link>
             </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, NavLink} from 'react-router-dom';
+import { useHistory, NavLink} from 'react-router-dom';
 import { getChart,  deleteFromChart, buyChart} from '../../store/chart';
 
 
@@ -8,6 +8,7 @@ const ChartPage = () => {
     const userId = useSelector((state) => state.session.user.id);
     const items = useSelector((state) => state.chartReducer.items)
     const dispatch = useDispatch(); 
+    const history = useHistory();
     const id = parseInt(userId)
     const [amount, setamount] = useState(1)
     let inputs = {}
@@ -42,7 +43,7 @@ const ChartPage = () => {
       }
       const buying = async()=> {
         await dispatch(buyChart(id, inputs))
-        // history
+        history.push('/history')
       }
 
       const press = async(e)=> {
@@ -63,7 +64,6 @@ const ChartPage = () => {
           {items.map((item) =>
           <div className='chart'>
             <div>
-              {total += item.cost}
               <img src={`${item.image}`}/>
             </div>
             <div className='chart-detail'>

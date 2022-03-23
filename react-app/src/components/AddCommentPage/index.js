@@ -45,15 +45,13 @@ function CommentFrom({ hide}){
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
       <form onSubmit={handleSubmit}>
-      <label>
-          YOUR COMMENT:
-          <input
+      <p  className="ladd">ADD COMMENT:</p>
+          <textarea
             type="text"
             value={body}
             onChange={handlebody}
             required
           />
-        </label>
         <button type="submit" className="b" disabled={errors.length === 0 ? false : true}>DONE</button>
         <button onClick={handleStop} className="b">CANCEL</button>
       </form>
