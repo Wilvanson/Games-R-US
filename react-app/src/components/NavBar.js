@@ -21,7 +21,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink className='links' to='/chart' exact={true} activeClassName='active'>
-            Chart
+            Cart
           </NavLink>
         </li>
         <li>

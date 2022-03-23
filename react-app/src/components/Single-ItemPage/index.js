@@ -131,8 +131,8 @@ function SingleItemPage(){
           <p>{item.description}</p>
           <p>${item.cost}</p>
           {item.in_stock < 4 && <p className='short'>There is {item.in_stock} left in stock</p>}
-          {error.length === 0 && <button disabled={item.in_stock !== 0 ? false : true} onClick={addchart}>ADD TO CHART</button>}
-          {error.length !== 0 && <p>Available in your chart</p>}
+          {error.length === 0 && <button disabled={item.in_stock !== 0 ? false : true} onClick={addchart}>ADD TO CART</button>}
+          {error.length !== 0 && <p>Available in your cart</p>}
         </div>
         </div>
           <div className="page"> 

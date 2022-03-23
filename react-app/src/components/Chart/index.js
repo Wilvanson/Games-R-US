@@ -56,8 +56,8 @@ const ChartPage = () => {
     return (
       <div className='your-chart'>
         <div className='first-chart'>
-          {len === 0 && <h1>YOUR CHART IS EMPTY</h1>}
-          {len !== 0 && <h1>YOUR CHART</h1>}
+          {len === 0 && <h1>YOUR CART IS EMPTY</h1>}
+          {len !== 0 && <h1>YOUR CART</h1>}
           {len !== 0 && <button  onClick={buying}>Checkout</button>}
           {/* <p>TOTAL: {}</p> */}
         </div>
