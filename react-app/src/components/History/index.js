@@ -34,7 +34,7 @@ const HistoryPage = () => {
             </div>
             <div className='chart-detail'>
               <div>
-                <NavLink to={`/items/${item.id}`} key={item.id} >
+                <NavLink className='links' to={`/items/${item.id}`} key={item.id} >
                   <h1 className="links">{item.name}</h1>
                 </NavLink>
                 

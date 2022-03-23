@@ -19,7 +19,7 @@ const ItemPage = () => {
           {items.map((item) =>
           <div className='items'>
             <img src={`${item.image}`}/>
-          <NavLink to={`/items/${item.id}`} key={item.id} >
+          <NavLink className='links' to={`/items/${item.id}`} key={item.id} >
             <h2>{item.name}</h2>
           </NavLink>
           </div>

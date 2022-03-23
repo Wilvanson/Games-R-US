@@ -10,17 +10,17 @@ const NavBar = () => {
     <nav>
       <ul className='navbar'>
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
+          <NavLink className='links' to='/' exact={true} activeClassName='active'>
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to='/history' exact={true} activeClassName='active'>
+          <NavLink className='links' to='/history' exact={true} activeClassName='active'>
             History
           </NavLink>
         </li>
         <li>
-          <NavLink to='/chart' exact={true} activeClassName='active'>
+          <NavLink className='links' to='/chart' exact={true} activeClassName='active'>
             Chart
           </NavLink>
         </li>
