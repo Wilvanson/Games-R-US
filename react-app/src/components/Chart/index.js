@@ -84,7 +84,7 @@ const ChartPage = () => {
                 <button onClick={(e) => {
                     // setvalue(item)
                     return removecharts(item)
-                }}>REMOVE FROM CHART</button>
+                }}>REMOVE FROM CART</button>
               </div>
             </div>
           </div>
