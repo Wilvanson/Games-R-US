@@ -3,10 +3,12 @@ My project is what one would suspect, a website designed to mimic the behavior o
 
 # Flow
  1. Home-
-    ![]()
- 2. Single-Item-
+    ![]()![image](https://user-images.githubusercontent.com/90806686/160162966-59e90a63-454b-4c4c-bc20-0ed10794fb11.png)
 
+ 2. Single-Item-
+    ![](![image](https://user-images.githubusercontent.com/90806686/160163157-b3dc5fb4-f79d-4abe-9f0a-73f095f68370.png)
  3. Cart- 
+    ![](![image](https://user-images.githubusercontent.com/90806686/160163383-92ec116b-d7d3-43fd-8313-5148e49f7528.png)
 # Setup
 1. Clone the repo
 
