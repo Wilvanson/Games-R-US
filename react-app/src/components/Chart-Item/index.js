@@ -49,6 +49,8 @@ const ChartItemPage = ({item}) => {
             </NavLink>
           </div>
           <div className='chart-button'>
+            <label >
+              # Of Items:    
             <input 
             type='number'
             name={item.name} 
@@ -58,6 +60,7 @@ const ChartItemPage = ({item}) => {
             placeholder={1}
             min={1} 
             max={item.in_stock} />
+            </label>
             <button onClick={(e) => {
                 return removecharts()
             }}>REMOVE FROM CART</button>
