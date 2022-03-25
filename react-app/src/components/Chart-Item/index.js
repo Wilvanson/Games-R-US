@@ -8,25 +8,27 @@ const ChartItemPage = ({item}) => {
     const items = useSelector((state) => state.chartReducer.items)
     const dispatch = useDispatch(); 
     const id = parseInt(userId)
-    if(!localStorage.getItem(item.name)){
-        localStorage.setItem(item.name, 1)
-    }
-    const [amount, setamount] = useState(localStorage.getItem(item.name))
+    
+    const [amount, setamount] = useState(localStorage.getItem(item.name) || 1)
     
     useEffect(() => {
         (async() => {
             await dispatch(getChart(userId));
+            setamount(localStorage.getItem(item.name))
+            if(!localStorage.getItem(item.name)){
+              localStorage.setItem(item.name, 1)
+          }
           })();
       }, [dispatch]);
     
-      const removecharts = async(item) =>{
-
+      const removecharts = async() =>{
+        localStorage.removeItem(item.name)
         await dispatch(deleteFromChart(item, id))
       }
 
       const handleChange = async(e) => {
         setamount(e.target.value)
-        localStorage.setItem(e.target.name, parseInt(e.target.value))
+        localStorage.setItem(item.name, parseInt(e.target.value))
       }
       
     //   const minis = (e) => {
@@ -61,13 +63,12 @@ const ChartItemPage = ({item}) => {
             name={item.name} 
             onChange={handleChange}
             onKeyPress={press} 
-            value={amount}
+            value={localStorage.getItem(item.name) || 1}
             placeholder={1}
             min={1} 
             max={item.in_stock} />
             <button onClick={(e) => {
-                // setvalue(item)
-                return removecharts(item)
+                return removecharts()
             }}>REMOVE FROM CART</button>
           </div>
         </div>

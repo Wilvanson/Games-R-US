@@ -10,22 +10,22 @@ const ChartPage = () => {
     const dispatch = useDispatch(); 
     const history = useHistory();
     const id = parseInt(userId)
-    let inputs = {}
     let len = items.length
     
     
     useEffect(() => {
-        (async() => {
-            await dispatch(getChart(userId));
-          })();
-      }, [dispatch]);
+      (async() => {
+        await dispatch(getChart(userId));
+      })();
+    }, [dispatch]);
     
-
-      const buying = async()=> {
+    
+    const buying = async()=> {
+        let inputs = {}
         items.map((ite) =>{
           inputs[ite.name] = parseInt(localStorage.getItem(ite.name))
-          localStorage.setItem(ite.name, 1)
         })
+        localStorage.clear()
         // console.log(inputs)
         await dispatch(buyChart(id, inputs))
         history.push('/history')
