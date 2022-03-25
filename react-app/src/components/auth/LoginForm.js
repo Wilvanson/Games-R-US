@@ -39,9 +39,14 @@ const LoginForm = () => {
 
   return (
     <div className="splash">
+      <div>
       <h1>
         Games-R-US
       </h1>
+      <p>Welcome to Games-R-Uss where all your gaming need are met</p>
+      <img src="https://i.ytimg.com/vi/PwJYXEHGn1U/maxresdefault.jpg"/>
+
+      </div>
 
       <div>
         <form onSubmit={onLogin}>

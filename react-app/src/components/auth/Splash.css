@@ -9,6 +9,11 @@
     align-items: center;
     gap: 30px;
   }
+
+  .splash img{
+    height: 400px;
+    width: 500px;
+  }
   
   .splash form * {
     display: flex;
