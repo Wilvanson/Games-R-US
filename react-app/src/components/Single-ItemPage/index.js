@@ -24,7 +24,9 @@ function SingleItemPage(){
   const userId = useSelector((state) => state.session.user.id);
   const item = useSelector(state => state.itemreducer.currentItem);
   const comments = useSelector(state => state.commentReducer.list);
-  const items = useSelector((state) => state.chartReducer.items)
+  const items = useSelector((state) => state.chartReducer.items);
+  
+  
   const dispatch = useDispatch();
   const history = useHistory();
   const id = parseInt(userId)
@@ -82,11 +84,9 @@ function SingleItemPage(){
   };
 
   useEffect(() => {
-      (async() => {
-          await dispatch(get_item(itemId));
-          await dispatch(getComments(itemId));
-          await dispatch(getChart(userId))
-        })();
+          dispatch(get_item(itemId));
+          dispatch(getComments(itemId));
+          dispatch(getChart(userId))
     }, [dispatch]);
 
     useEffect(()=>{
@@ -100,12 +100,9 @@ function SingleItemPage(){
         }
       })
       
+      
     }, [dispatch, items, item])
 
-    if (item.id === 0 ){
-      return <Redirect to="/crash" />;
-    }
-    
     
     const addchart = async(e) =>{
       e.preventDefault();
@@ -140,7 +137,7 @@ function SingleItemPage(){
           {error.length !== 0 && <p>Available in your cart</p>}
         </div>
         </div>
-          <div className="page"> 
+          {item.id !== 0 && <div className="page"> 
         <h2>Comments</h2>
         <button onClick={openAModal}>ADD A COMMENT</button>
 
@@ -162,7 +159,7 @@ function SingleItemPage(){
                     </div>
                 )
             })}
-      </div>
+      </div>}
       <Modal
           isOpen={isOpen}
           onAfterOpen={afterOpenModal}

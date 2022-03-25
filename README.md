@@ -1,4 +1,13 @@
 # Games-R-Uss
+My project is what one would suspect, a website designed to mimic the behavior of Amazon, where you can view items, create comments, add items that you like to your cart and checkout of your cart.
+
+# Flow
+ 1. Home-
+    ![]()
+ 2. Single-Item-
+
+ 3. Cart- 
+# Setup
 1. Clone the repo
 
         git@github.com:Wilvanson/Games-R-US.git

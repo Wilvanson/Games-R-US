@@ -19,7 +19,13 @@ def item(id):
     item = Item.query.get(id)
     if(item):
         return item.to_dict()
-    return {'id': 0}
+    return {'id': 0,
+            'name':'We do not have this item',
+            'cost': 0,
+            'in_stock': 0,
+            'type': 'NaN',
+            'description': "No Item Exist",
+            'image':'https://th.bing.com/th?q=Sad+Frog+Cartoon&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=en-US&cc=US&setlang=en&adlt=moderate&t=1&mw=247'}
 
 
 @item_routes.route('/<int:id>/comments')
