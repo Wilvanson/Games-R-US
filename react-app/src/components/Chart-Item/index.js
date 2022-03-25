@@ -31,20 +31,11 @@ const ChartItemPage = ({item}) => {
         localStorage.setItem(item.name, parseInt(e.target.value))
       }
       
-    //   const minis = (e) => {
-    //     inputs[e.target.name]--
-        
-    //   }
-
-    //   const plus = (e) => {
-    //     inputs[e.target.name]++
-        
-    //   }
+    
 
       const press = async(e)=> {
         e.preventDefault()
         return false
-        // history
       }
     return (
         <div className='chart'>

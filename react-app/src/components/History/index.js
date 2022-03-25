@@ -21,7 +21,6 @@ const HistoryPage = () => {
     
 
       let total = 0
-      // setvalue(total)
       return (
         <div className='your-chart'>
         <div>

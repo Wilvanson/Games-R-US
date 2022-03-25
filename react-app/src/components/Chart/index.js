@@ -26,7 +26,6 @@ const ChartPage = () => {
           inputs[ite.name] = parseInt(localStorage.getItem(ite.name))
         })
         localStorage.clear()
-        // console.log(inputs)
         await dispatch(buyChart(id, inputs))
         history.push('/history')
       }

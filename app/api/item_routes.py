@@ -34,7 +34,6 @@ def comment(id):
 def addcomment(id):
     bodys = request.json
     body = bodys['newComment']
-    # print('\n \n ', body,'\n \n')
     user = body['user_id']
     description = body['description']
     comment = Comment(user_id= user, item_id= id, description=description)

@@ -103,9 +103,7 @@ function SingleItemPage(){
     }, [dispatch, items, item])
 
     if (item.id === 0 ){
-      // console.log("\n \n no page \n \n")
       return <Redirect to="/crash" />;
-     // <Redirect to="/crash" />;
     }
     
     

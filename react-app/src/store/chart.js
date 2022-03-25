@@ -54,7 +54,7 @@ const removeChart = id => {
 
 
   export const deleteFromChart = (item, id) => async dispatch => {
-    //   const ids = item.id;
+    
     const response = await fetch(`/api/users/${id}/chart/delete`,{
       method:"POST",
       headers: {"Content-Type": "application/json"},
