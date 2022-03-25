@@ -29,6 +29,11 @@ const NavBar = () => {
           GitHub
         </a>
       </li>
+      <li>
+        <a className='links' href="https://www.linkedin.com/in/wilvanson-dutervil-509a2b174/" target="_blank">
+          Linkedin
+        </a>
+      </li>
         {user && <li>
           <LogoutButton />
         </li>}

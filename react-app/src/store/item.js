@@ -30,6 +30,7 @@ export const get_item = (id) => async (dispatch) => {
 });
 if (response.ok) {
     const data = await response.json();
+    console.log(data)
     dispatch(getItem(data));
 }
 }
@@ -38,7 +39,7 @@ if (response.ok) {
 
 
 
-const initialState = {items:[], currentItem:{}};
+const initialState = {items:[], currentItem: {}};
 
 export default function itemreducer(state = initialState, action) {
     let newState
@@ -52,7 +53,11 @@ export default function itemreducer(state = initialState, action) {
             return newState
         case GET_ITEM:
             newState = {...state}
-            newState.currentItem = action.item
+            if(action.item !== 0){
+                newState.currentItem = action.item
+            }else{
+                newState.currentItem = 0
+            }
             return newState
     default:
       return state;

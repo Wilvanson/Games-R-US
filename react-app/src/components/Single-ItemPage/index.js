@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams, useHistory} from 'react-router-dom';
 import { get_item } from '../../store/item';
 import { getComments } from '../../store/comments';
 import Modal from "react-modal";
@@ -26,9 +26,10 @@ function SingleItemPage(){
   const comments = useSelector(state => state.commentReducer.list);
   const items = useSelector((state) => state.chartReducer.items)
   const dispatch = useDispatch();
+  const history = useHistory();
   const id = parseInt(userId)
 
-   
+  
    
 
   const openModal = () => {
@@ -98,8 +99,14 @@ function SingleItemPage(){
           setError(er)
         }
       })
+      
     }, [dispatch, items, item])
 
+    if (item.id === 0 ){
+      // console.log("\n \n no page \n \n")
+      return <Redirect to="/crash" />;
+     // <Redirect to="/crash" />;
+    }
     
     
     const addchart = async(e) =>{

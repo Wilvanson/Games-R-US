@@ -17,7 +17,9 @@ def items():
 @login_required
 def item(id):
     item = Item.query.get(id)
-    return item.to_dict()
+    if(item):
+        return item.to_dict()
+    return {'id': 0}
 
 
 @item_routes.route('/<int:id>/comments')

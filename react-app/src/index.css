@@ -19,6 +19,9 @@
     align-items: center;
 }
 
+.navbar .links{
+    color: antiquewhite;
+}
 .pages{
     display: grid;
     grid-gap:10px;
@@ -34,7 +37,9 @@ img{
 }
 
 body{
-    background: rgb(63, 54, 54);
+    background: rgb(179, 167, 167);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
 }
 
 .singlepage{
@@ -139,7 +144,7 @@ body{
 
 .links{
     text-decoration: none;
-    color: rgb(248, 228, 228);
+    color: black;
     font-weight: bold;
 }
 
@@ -171,4 +176,11 @@ textarea{
     height: 200px;
     width: 250px;
     resize: none;
+}
+
+.lost{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }

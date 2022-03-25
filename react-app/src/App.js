@@ -12,7 +12,7 @@ import ItemPage from './components/ItemsPage';
 import SingleItemPage from './components/Single-ItemPage';
 import ChartPage from './components/Chart';
 import HistoryPage from './components/History';
-
+import CrashPage from './components/404page';
 
 function App() {
   const {user} = useSelector((state) => state.session)
@@ -57,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/history' exact={true} >
           <HistoryPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/' >
+          <CrashPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

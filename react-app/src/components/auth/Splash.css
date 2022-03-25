@@ -1,8 +1,5 @@
 .splash {
-    background: rgb(63, 54, 54);
     background-size: 800% 800%;
-  
-    
     width: 100%;
     height: 100%;
     position: absolute;
@@ -10,7 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-direction: column; */
     gap: 30px;
   }
   
@@ -70,5 +66,4 @@
   .formdiv .links{
     list-style: none;
     font-weight: bold;
-    color: antiquewhite;
   }
