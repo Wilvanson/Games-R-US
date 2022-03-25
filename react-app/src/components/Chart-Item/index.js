@@ -70,6 +70,7 @@ const ChartItemPage = ({item}) => {
             <button onClick={(e) => {
                 return removecharts()
             }}>REMOVE FROM CART</button>
+            <p>Only {item.in_stock} are in stock</p>
           </div>
         </div>
       </div>
