@@ -9,13 +9,13 @@ My project is what one would suspect, a website designed to mimic the behavior o
    - [Live Site](https://games-r-uss.herokuapp.com)
    
 # Technologies used
-  # Frontend
+   # Frontend
       -Javascript
       -React
       -Redux
       -HTML/CSS
    
-  # Backend
+   # Backend
       -Python
       -Flask
       -SQLAlchemy
