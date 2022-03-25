@@ -7,22 +7,22 @@ My project is what one would suspect, a website designed to mimic the behavior o
    - [User Stories](https://github.com/Wilvanson/Games-R-US/wiki/User-Stories)
    - [WireFrame](https://github.com/Wilvanson/Games-R-US/wiki/WireFrame)
    - [Live Site](https://games-r-uss.herokuapp.com)
-   - 
+   
 # Technologies used
   1.Frontend
-   -Javascript
-   -React
-   -Redux
-   -HTML/CSS
+      -Javascript
+      -React
+      -Redux
+      -HTML/CSS
    
   2.Backend
-   -Python
-   -Flask
-   -SQLAlchemy
-   -PostgreSQL
-   -WTForms
-   -Docker
-   -Heroku
+      -Python
+      -Flask
+      -SQLAlchemy
+      -PostgreSQL
+      -WTForms
+      -Docker
+      -Heroku
 # Flow
  1. Home-
     ![]()![image](https://user-images.githubusercontent.com/90806686/160162966-59e90a63-454b-4c4c-bc20-0ed10794fb11.png)
