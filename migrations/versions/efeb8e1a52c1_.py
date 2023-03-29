@@ -7,9 +7,6 @@ Create Date: 2022-03-21 12:07:10.403602
 """
 from alembic import op
 import sqlalchemy as sa
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = 'efeb8e1a52c1'
@@ -31,10 +28,7 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE items SET SCHEMA {SCHEMA};")
-        
+    
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -46,9 +40,6 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('charts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -58,9 +49,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE charts SET SCHEMA {SCHEMA};")
 
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -73,9 +61,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
-
     op.create_table('likes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -85,9 +70,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
 
     op.create_table('purchesed',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -99,8 +81,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE purchesed SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

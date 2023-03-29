@@ -1,13 +1,10 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
 class Item(db.Model, UserMixin):
     __tablename__ = 'items'
-    
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     in_stock = db.Column(db.Integer, nullable=False)
