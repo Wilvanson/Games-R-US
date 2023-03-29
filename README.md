@@ -1,12 +1,44 @@
 # Games-R-Uss
 My project is what one would suspect, a website designed to mimic the behavior of Amazon, where you can view items, create comments, add items that you like to your cart and checkout of your cart.
 
+# Index
+   - [Features List](https://github.com/Wilvanson/Games-R-US/wiki/Feature-List)
+   - [Database Schema](https://github.com/Wilvanson/Games-R-US/wiki/Database-Schema)
+   - [User Stories](https://github.com/Wilvanson/Games-R-US/wiki/User-Stories)
+   - [WireFrame](https://github.com/Wilvanson/Games-R-US/wiki/WireFrame)
+   - [Live Site](https://games-r-uss.herokuapp.com)
+   
+# Technologies used
+   # Frontend
+      -Javascript
+      -React
+      -Redux
+      -HTML/CSS
+   
+   # Backend
+      -Python
+      -Flask
+      -SQLAlchemy
+      -PostgreSQL
+      -WTForms
+      -Docker
+      -Heroku
 # Flow
  1. Home-
-    ![]()
- 2. Single-Item-
+    ![]()![image](https://user-images.githubusercontent.com/90806686/160162966-59e90a63-454b-4c4c-bc20-0ed10794fb11.png)
 
+
+
+ 2. Single-Item-
+    ![]()![image](https://user-images.githubusercontent.com/90806686/160163157-b3dc5fb4-f79d-4abe-9f0a-73f095f68370.png)
+    
+    
+    
  3. Cart- 
+    ![]()![image](https://user-images.githubusercontent.com/90806686/160163383-92ec116b-d7d3-43fd-8313-5148e49f7528.png)
+    
+    
+    
 # Setup
 1. Clone the repo
 
